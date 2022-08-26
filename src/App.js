@@ -1,5 +1,11 @@
+import Mytodo from "./components/todoreact/Mytodo";
+
 function App() {
-  return <div className="App">Yes</div>;
+  return (
+    <div className="App">
+      <Mytodo />
+    </div>
+  );
 }
 
 export default App;
