@@ -11,13 +11,27 @@ const getlocalData = () => {
 const Mytodo = () => {
   const [inputdata, setinputdata] = useState("");
   const [items, setitems] = useState(getlocalData());
+  const [iseditedItem, setiseditedItem] = useState("");
+  const [togglebtn, settogglebtn] = useState(false);
   useEffect(() => {
     localStorage.setItem("Todos", JSON.stringify(items));
   }, [items]);
 
   const addItem = () => {
     if (!inputdata) alert("Fill it");
-    else {
+    else if (inputdata && togglebtn) {
+      setitems(
+        items.map((current) => {
+          if (current.id === iseditedItem) {
+            return { ...current, name: inputdata };
+          }
+          return current;
+        })
+      );
+      setinputdata([]);
+      setiseditedItem(null);
+      settogglebtn(false);
+    } else {
       const newItem = {
         id: new Date().getTime().toString(),
         name: inputdata,
@@ -25,6 +39,14 @@ const Mytodo = () => {
       setitems([...items, newItem]);
       setinputdata("");
     }
+  };
+  const editItem = (index) => {
+    const editedItem = items.find((current) => {
+      return current.id === index;
+    });
+    setinputdata(editedItem.name);
+    setiseditedItem(index);
+    settogglebtn(true);
   };
   const deleteItem = (index) => {
     const updatedItems = items.filter((current) => {
@@ -51,7 +73,11 @@ const Mytodo = () => {
               value={inputdata}
               onChange={(e) => setinputdata(e.target.value)}
             />
-            <i className="fa fa-plus add-btn" onClick={addItem}></i>
+            {togglebtn ? (
+              <i className="fa fa-edit add-btn" onClick={addItem}></i>
+            ) : (
+              <i className="fa fa-plus add-btn" onClick={addItem}></i>
+            )}
           </div>
           <div className="showItems">
             {items.map((currentItem) => {
@@ -59,7 +85,10 @@ const Mytodo = () => {
                 <div className="eachItem" key={currentItem.id}>
                   <h3>{currentItem.name}</h3>
                   <div className="todo-btn">
-                    <i className="far fa-edit add-btn"></i>
+                    <i
+                      className="far fa-edit add-btn"
+                      onClick={() => editItem(currentItem.id)}
+                    ></i>
                     <i
                       className="far fa-trash-alt add-btn"
                       onClick={() => deleteItem(currentItem.id)}
