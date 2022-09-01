@@ -68,7 +68,7 @@ const PracticeTodos = () => {
         <div className="child-div">
           <figure>
             <img src="./images/todo.svg" alt="todologo" />
-            <figcaption>Add List Here</figcaption>
+            <figcaption>Add Your List Here</figcaption>
           </figure>
           <div className="addItems">
             <input
