@@ -66,8 +66,8 @@ const PracticeTodos = () => {
     <>
       <div className="main-div">
         <div className="child-div">
+          <h1 className="mylist">My List</h1>
           <figure>
-            <img src="./images/todo.svg" alt="todologo" />
             <figcaption>Add Your List Here</figcaption>
           </figure>
           <div className="addItems">
