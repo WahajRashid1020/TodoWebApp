@@ -88,7 +88,7 @@ const PracticeTodos = () => {
             {itemslist.map((current) => {
               return (
                 <div className="eachItem" key={current.id}>
-                  <h3>{current.name}</h3>
+                  <h3 className="myh3">{current.name}</h3>
                   <div className="todo-btn">
                     <i
                       className="far fa-edit add-btn"
