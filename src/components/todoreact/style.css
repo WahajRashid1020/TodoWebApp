@@ -38,7 +38,8 @@ html {
 
 input {
   /* display: block; */
-  min-width: 35rem;
+  min-width: 34rem;
+  margin-left: -10px;
   height: 3.4rem;
   padding: 2rem 1.2rem;
   font-size: 1.8rem;
